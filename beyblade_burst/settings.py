@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'beyblade_burst_web_app.apps.BeybladeBurstWebAppConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
