@@ -15,18 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path, re_path
-from rest_framework import routers
-from beyblade_burst_web_app import views
-
-
-router = routers.DefaultRouter()
-router.register('energy_layers', views.EnergyLayerViewSet)
-router.register('forge_disks', views.ForgeDiskViewSet)
-router.register('performance_tips', views.PerformanceTipViewSet)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^', include(router.urls)),
+    re_path(r'^api/', include('beyblade_burst_web_app.urls')),
     re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
