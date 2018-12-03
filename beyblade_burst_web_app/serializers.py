@@ -5,7 +5,8 @@ from rest_framework import serializers
 class EnergyLayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = EnergyLayer
-        fields = ('name', 'abbreviation', 'product_code', 'weight')
+        fields = ('name', 'japanese_name', 'abbreviation', 'aliases', 'product_code', 'initial_release',
+                  'weight', 'part_image', 'spin_direction', 'system',)
 
 
 class ForgeDiskSerializer(serializers.HyperlinkedModelSerializer):

@@ -5,9 +5,41 @@ from django.db import models
 
 class EnergyLayer(models.Model):
     name = models.CharField(max_length=30)
+    japanese_name = models.CharField(max_length=50, blank=True)
     abbreviation = models.CharField(max_length=8, blank=True, primary_key=True)
+    aliases = models.CharField(max_length=50, blank=True)
     product_code = models.CharField(max_length=8, blank=True)
+    initial_release = models.DateField(blank=True)
     weight = models.DecimalField(max_digits=10, decimal_places=3)
+    part_image = models.ImageField(upload_to='parts/layers/', blank=True)
+
+    LEFT = 'LT'
+    RIGHT = 'RT'
+    spin_direction_choices = (
+        (LEFT, "Left"),
+        (RIGHT, 'Right')
+    )
+    spin_direction = models.CharField(
+        max_length=2,
+        choices=spin_direction_choices,
+        default=RIGHT
+    )
+
+    BURST = 'BR'
+    DUAL_LAYER = 'DR'
+    GOD_SYS = 'GD'
+    CHO_Z = 'CZ'
+    system_choices = (
+        (BURST, 'Burst'),
+        (DUAL_LAYER, 'Dual Layer'),
+        (GOD_SYS, 'God Layer'),
+        (CHO_Z, 'Cho Z')
+    )
+    system = models.CharField(
+        max_length=2,
+        choices=system_choices,
+        blank=True
+    )
 
     class Meta:
         verbose_name_plural = 'Energy Layers'

@@ -15,6 +15,10 @@ from rest_framework.permissions import AllowAny
 class EnergyLayerViewSet(viewsets.ModelViewSet):
     """
     API Endpoint that allows energy layers to be viewed or edited.
+    Sample URL's to select a part:
+    'http://localhost:8000/api/energy_layers/V/'
+    'http://localhost:8000/api/energy_layers/A2/'
+    'http://localhost:8000/api/energy_layers/kD/'
     """
     queryset = EnergyLayer.objects.all().order_by("abbreviation")
     serializer_class = EnergyLayerSerializer
