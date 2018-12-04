@@ -1,5 +1,5 @@
 from django.contrib import admin
-from beyblade_burst_web_app.models import EnergyLayer, ForgeDisk, PerformanceTip
+from beyblade_burst_web_app.models import EnergyLayer, ForgeDisk, PerformanceTip, Combination
 
 # Register your models here.
 
@@ -18,3 +18,7 @@ class ForgeDiskAdmin(admin.ModelAdmin):
 class PerformanceTipAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Combination)
+class CombinationAdmin(admin.ModelAdmin):
+    pass

@@ -4,9 +4,9 @@ from django.db import models
 
 
 class EnergyLayer(models.Model):
+    abbreviation = models.CharField(max_length=8, primary_key=True, unique=True)
     name = models.CharField(max_length=30)
     japanese_name = models.CharField(max_length=50, blank=True)
-    abbreviation = models.CharField(max_length=8, blank=True, primary_key=True)
     aliases = models.CharField(max_length=50, blank=True)
     product_code = models.CharField(max_length=8, blank=True)
     initial_release = models.DateField(blank=True)
@@ -22,7 +22,7 @@ class EnergyLayer(models.Model):
     spin_direction = models.CharField(
         max_length=2,
         choices=spin_direction_choices,
-        default=RIGHT
+        default=RIGHT,
     )
 
     BURST = 'BR'
@@ -51,7 +51,7 @@ class EnergyLayer(models.Model):
 
 class ForgeDisk(models.Model):
     name = models.CharField(max_length=30)
-    abbreviation = models.CharField(max_length=8, blank=True, primary_key=True)
+    abbreviation = models.CharField(max_length=8, primary_key=True)
     product_code = models.CharField(max_length=8, blank=True)
     weight = models.DecimalField(max_digits=10, decimal_places=3)
 
@@ -65,7 +65,7 @@ class ForgeDisk(models.Model):
 
 class PerformanceTip(models.Model):
     name = models.CharField(max_length=30)
-    abbreviation = models.CharField(max_length=8, blank=True, primary_key=True)
+    abbreviation = models.CharField(max_length=8, primary_key=True)
     product_code = models.CharField(max_length=8, blank=True)
     weight = models.DecimalField(max_digits=10, decimal_places=3)
 
@@ -77,11 +77,15 @@ class PerformanceTip(models.Model):
         return self.name
 
 
-"""
 class Combination(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     layer = models.ForeignKey(EnergyLayer, on_delete=models.CASCADE)
     disk = models.ForeignKey(ForgeDisk, on_delete=models.CASCADE)
     tip = models.ForeignKey(PerformanceTip, on_delete=models.CASCADE)
 
-"""
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Combinations'
+        verbose_name = 'Combination'
