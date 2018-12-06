@@ -13,22 +13,22 @@ class EnergyLayer(models.Model):
     weight = models.DecimalField(max_digits=10, decimal_places=3)
     part_image = models.ImageField(upload_to='parts/layers/', blank=True)
 
-    LEFT = 'LT'
-    RIGHT = 'RT'
+    LEFT = 'Left'
+    RIGHT = 'Right'
     spin_direction_choices = (
         (LEFT, "Left"),
-        (RIGHT, 'Right')
+        (RIGHT, "Right")
     )
     spin_direction = models.CharField(
-        max_length=2,
+        max_length=5,
         choices=spin_direction_choices,
         default=RIGHT,
     )
 
-    BURST = 'BR'
-    DUAL_LAYER = 'DR'
-    GOD_SYS = 'GD'
-    CHO_Z = 'CZ'
+    BURST = 'Burst'
+    DUAL_LAYER = 'Dual Layer'
+    GOD_SYS = 'God'
+    CHO_Z = 'Chou-Z'
     system_choices = (
         (BURST, 'Burst'),
         (DUAL_LAYER, 'Dual Layer'),
@@ -36,7 +36,7 @@ class EnergyLayer(models.Model):
         (CHO_Z, 'Cho Z')
     )
     system = models.CharField(
-        max_length=2,
+        max_length=30,
         choices=system_choices,
         blank=True
     )

@@ -25,3 +25,4 @@ class CombinationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Combination
         fields = ('id', 'name', 'layer', 'disk', 'tip')
+        depth = 1
