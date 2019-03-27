@@ -1,24 +1,12 @@
-from beyblade_burst_web_app.models import EnergyLayer, ForgeDisk, PerformanceTip, Combination
+from beyblade_burst_web_app.models import BeybladePart, Combination
 from rest_framework import serializers
 
 
-class EnergyLayerSerializer(serializers.ModelSerializer):
+class BeybladePartSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EnergyLayer
+        model = BeybladePart
         fields = ('name', 'japanese_name', 'abbreviation', 'aliases', 'product_code', 'initial_release',
-                  'weight', 'part_image', 'spin_direction', 'system',)
-
-
-class ForgeDiskSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ForgeDisk
-        fields = ('name', 'abbreviation', 'product_code', 'weight')
-
-
-class PerformanceTipSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PerformanceTip
-        fields = ('name', 'abbreviation', 'product_code', 'weight')
+                  'weight', 'part_image', 'spin_direction', 'system', 'part_type')
 
 
 class CombinationSerializer(serializers.ModelSerializer):
