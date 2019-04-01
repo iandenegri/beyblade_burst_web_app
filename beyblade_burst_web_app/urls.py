@@ -5,9 +5,7 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register('energy_layers', views.EnergyLayerViewSet, 'energy_layers')
-router.register('forge_disks', views.ForgeDiskViewSet, 'forge_disks')
-router.register('performance_tips', views.PerformanceTipViewSet, 'performance_tips')
+router.register('energy_layers', views.BeybladePartViewSet, 'beyblade_parts')
 router.register('combinations', views.CombinationViewSet, 'combinations')
 # router.register('part_list', views.PartListViewSet, 'part_list')
 

@@ -64,13 +64,13 @@ class BeybladePart(models.Model):
     
     # FIELDS WITH CHOICES.
     part_types = (
-        (LAYER, 'Energy Layer'),
-        (DISK, 'Forge Disk'),
-        (TIP, 'Performance Tip'),
-        (FRAME, 'Disk Frame'),
-        (CHIP, 'Gatinko Chip'),
-        (WEIGHT, 'Gatinko Weight'),
-        (BASE, 'Gatinko Base')
+        ("LAYER", 'Energy Layer'),
+        ("DISK", 'Forge Disk'),
+        ("TIP", 'Performance Tip'),
+        ("FRAME", 'Disk Frame'),
+        ("CHIP", 'Gatinko Chip'),
+        ("WEIGHT", 'Gatinko Weight'),
+        ("BASE", 'Gatinko Base')
     )
     part_type = models.CharField(
         max_length=30,
@@ -79,11 +79,11 @@ class BeybladePart(models.Model):
     )
 
     system_choices = (
-        (BURST, 'Burst'),
-        (DUAL_LAYER, 'Dual Layer'),
-        (GOD_SYS, 'God Layer'),
-        (CHO_Z, 'Cho Z'),
-        (GT, "Gatinko")
+        ("BURST", 'Burst'),
+        ("DUAL_LAYER", 'Dual Layer'),
+        ("GOD_SYS", 'God Layer'),
+        ("CHO_Z", 'Cho Zetsu'),
+        ("GT", "Gatinko")
     )
     system = models.CharField(
         max_length=30,
@@ -92,8 +92,8 @@ class BeybladePart(models.Model):
     )
 
     spin_direction_choices = (
-        (LEFT, "Left"),
-        (RIGHT, "Right")
+        ("LEFT", "Left"),
+        ("RIGHT", "Right")
     )
     spin_direction = models.CharField(
         max_length=5,
@@ -111,9 +111,9 @@ class BeybladePart(models.Model):
 
 class Combination(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    layer = models.ForeignKey(BeybladePart, on_delete=models.CASCADE)
-    disk = models.ForeignKey(BeybladePart, on_delete=models.CASCADE)
-    tip = models.ForeignKey(BeybladePart, on_delete=models.CASCADE)
+    layer = models.ForeignKey(BeybladePart, on_delete=models.CASCADE, related_name="layers", related_query_name="layer")
+    disk = models.ForeignKey(BeybladePart, on_delete=models.CASCADE, related_name="disks", related_query_name="disk")
+    tip = models.ForeignKey(BeybladePart, on_delete=models.CASCADE, related_name="tips", related_query_name="tip")
 
     def __str__(self):
         return self.name
