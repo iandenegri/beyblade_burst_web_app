@@ -6,7 +6,7 @@ class BeybladePartSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeybladePart
         fields = ('name', 'japanese_name', 'abbreviation', 'aliases', 'product_code', 'initial_release',
-                  'weight', 'part_image', 'spin_direction', 'system', 'part_type')
+                  'weight', 'part_image', 'spin_direction', 'system', 'part_type', 'pk')
 
 
 class CombinationSerializer(serializers.ModelSerializer):

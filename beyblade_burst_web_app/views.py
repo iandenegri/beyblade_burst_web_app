@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 from beyblade_burst_web_app.models import BeybladePart, Combination
 from beyblade_burst_web_app.serializers import (BeybladePartSerializer, CombinationSerializer)
@@ -17,12 +17,8 @@ from rest_framework.permissions import AllowAny
 class BeybladePartViewSet(viewsets.ModelViewSet):
     """
     API Endpoint that allows beyblade parts to be viewed or edited.
-    Sample URL's to select a part:
-    'http://localhost:8000/api/energy_layers/V/'
-    'http://localhost:8000/api/energy_layers/A2/'
-    'http://localhost:8000/api/energy_layers/kD/'
     """
-    queryset = BeybladePart.objects.all().order_by("name")
+    queryset = BeybladePart.objects.all().order_by("product_code")
     serializer_class = BeybladePartSerializer
 
 
@@ -45,3 +41,14 @@ def api_login(request):
         login(request, user)
         return Response(status=status.HTTP_200_OK)
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+def index(request):
+    """View function for home page of site."""
+    all_parts = list(BeybladePart.objects.all())
+    latest_parts = all_parts[-3:]
+    last_combo = Combination.objects.all().latest('id')
+    context = {
+        'latest_parts': latest_parts,
+        'last_combo': last_combo,
+    }
+    return render(request, "beyblade_burst_web_app/html/index.html", context=context)
