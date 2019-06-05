@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView
 
 from beyblade_burst_web_app.models import BeybladePart, Combination
 from beyblade_burst_web_app.serializers import (BeybladePartSerializer, CombinationSerializer)
@@ -52,3 +53,13 @@ def index(request):
         'last_combo': last_combo,
     }
     return render(request, "beyblade_burst_web_app/html/index.html", context=context)
+
+class BeybladePartList(ListView):
+    model = BeybladePart
+
+    def head(self, *args, **kwargs):
+        last_part = self.get_queryset().latest('id')
+        response = HttpResponse('')
+        # RFC 1123 date format
+        response['name'] = last_part['name']
+        return response
