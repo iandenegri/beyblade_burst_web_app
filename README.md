@@ -1,5 +1,6 @@
 # README FOR THIS PROJECT
 This is currently going to be a list of all parts for Beyblade Burst and an API to go with it.
+
 What I want(ed) the site to look like:
 ![Wireframe](docs/wireframe.jpg)
 
