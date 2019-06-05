@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'beyblade_burst_web_app.apps.BeybladeBurstWebAppConfig',
+    'accounts.apps.AccountsConfig',
     'rest_framework',
     'corsheaders',
 ]
@@ -147,6 +148,10 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 
+# HANDLING USERS
+# -----------------------------------------------------------------------------
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
 
 # DJANGO-CORS-HEADERS
 # -----------------------------------------------------------------------------
