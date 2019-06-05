@@ -44,7 +44,8 @@ class BeybladePart(models.Model):
 
     spin_direction_choices = (
         ("LEFT", "Left"),
-        ("RIGHT", "Right")
+        ("RIGHT", "Right"),
+        ("DUAL", "Dual"),
     )
     spin_direction = models.CharField(
         max_length=5,
