@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Latest 3 parts added to the site!</h1>
+    <div class="row">
+        {% for part in object_list %}
+        <div class="col-4">
+            <p>{{part.name}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %} 

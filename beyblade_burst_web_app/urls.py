@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path, re_path
 from rest_framework import routers
-from .views import api_login, BeybladePartList, BeybladePartViewSet, CombinationViewSet
+from .views import api_login, BeybladePartListView, BeybladePartViewSet, CombinationViewSet, BeybladePartDetailView
 
 
 router = routers.DefaultRouter()
@@ -10,9 +10,8 @@ router.register('combinations', CombinationViewSet, 'combinations')
 
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # re_path(r'^', include(router.urls)),
-    # re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('login/', api_login),
-    path('', BeybladePartList.as_view(), name="beyblade_part_list")
+
+    path('', BeybladePartListView.as_view(), name="beyblade_part_list"),
+    path('<int:pk>/', BeybladePartDetailView.as_view(), name='beyblade_part_detail'),
 ] + router.urls

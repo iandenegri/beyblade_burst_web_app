@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView, DetailView
 
 from beyblade_burst_web_app.models import BeybladePart, Combination
 from beyblade_burst_web_app.serializers import (BeybladePartSerializer, CombinationSerializer)
@@ -12,7 +12,54 @@ from rest_framework.permissions import AllowAny
 
 
 # Create your views here.
+class Index(TemplateView):
+    template_name="beyblade_burst_web_app/html/index.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(Index, self).get_context_data(*args, **kwargs)
+        all_parts = list(BeybladePart.objects.all())
+        latest_parts = all_parts[-3:]
+
+        last_combo = Combination.objects.all().latest('id')
+
+        context['latest_parts'] = latest_parts
+        context['last_combo'] = last_combo
+
+        return context
+
+
+class BeybladePartListView(ListView):
+    model = BeybladePart
+    queryset = BeybladePart.objects.all().order_by('initial_release')
+    template_name="beyblade_burst_web_app/html/part_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(BeybladePartListView, self).get_context_data(**kwargs)
+        return context
+
+    def head(self, *args, **kwargs):
+        last_part = self.get_queryset().latest('id')
+        response = HttpResponse('')
+        # RFC 1123 date format
+        response['name'] = last_part['name']
+        return response
+
+class BeybladePartDetailView(DetailView):
+    model = BeybladePart
+    template_name="beyblade_burst_web_app/html/part_detail.html"
+
+# API VIEWS
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_login(request):
+    username = request.data['username']
+    password = request.data['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @permission_classes([AllowAny])
 class BeybladePartViewSet(viewsets.ModelViewSet):
@@ -30,36 +77,3 @@ class CombinationViewSet(viewsets.ModelViewSet):
     """
     queryset = Combination.objects.all().order_by("name")
     serializer_class = CombinationSerializer
-
-
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def api_login(request):
-    username = request.data['username']
-    password = request.data['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return Response(status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
-
-def index(request):
-    """View function for home page of site."""
-    all_parts = list(BeybladePart.objects.all())
-    latest_parts = all_parts[-3:]
-    last_combo = Combination.objects.all().latest('id')
-    context = {
-        'latest_parts': latest_parts,
-        'last_combo': last_combo,
-    }
-    return render(request, "beyblade_burst_web_app/html/index.html", context=context)
-
-class BeybladePartList(ListView):
-    model = BeybladePart
-
-    def head(self, *args, **kwargs):
-        last_part = self.get_queryset().latest('id')
-        response = HttpResponse('')
-        # RFC 1123 date format
-        response['name'] = last_part['name']
-        return response

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <h1 class="text-center">{{ object.name }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-4 text-center">
+            <p>{{object.weight}}g</p>
+            <p>{{object.product_code}}</p>
+        </div>
+    </div>
+</div>
+{% endblock body %} 
