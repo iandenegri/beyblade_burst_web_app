@@ -16,6 +16,12 @@ What I want(ed) the site to look like:
 * Added dual spin as an option when creating a part object.
 * Adding functionality for signing up for, into and out of the site.
 
+### 06/08/2019
+* Added views to see a list of all parts and see part details.
+* Switched from a FBV to a CBV for the index page to try and get as much of the site functioning with CBV's as possible.
+* Upgrades to the navbar.
+* Switched aliases to a text field as there can be an unlimited amount of them.
+
 # TO-DO
 * The Combination Model needs an overhaul from the admin panel side. When creating a new combination parts of all types come up for every specific part field. When creating a form to create combinations I can probably specify to only show specific types of parts in each drop down input.
 * The Combination Model can't handle Gachinko layer combinations. This can be addressed once all other aspects of it are completed.

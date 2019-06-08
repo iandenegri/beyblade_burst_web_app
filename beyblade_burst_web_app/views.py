@@ -18,7 +18,7 @@ class Index(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(Index, self).get_context_data(*args, **kwargs)
         all_parts = list(BeybladePart.objects.all())
-        latest_parts = all_parts[-3:]
+        latest_parts = all_parts[-3:] # This can fail in an instance where there's less than 3 parts. Soon this will fail if there are less than 3 parts that qualify as "latest"
 
         last_combo = Combination.objects.all().latest('id')
 
