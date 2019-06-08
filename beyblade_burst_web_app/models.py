@@ -11,7 +11,7 @@ class BeybladePart(models.Model):
     product_code = models.CharField(max_length=8, blank=True)
     initial_release = models.DateField(blank=True)
     weight = models.DecimalField(max_digits=10, decimal_places=3, blank=True)
-    part_image = models.ImageField(upload_to='parts/layers/', blank=True)
+    part_image = models.ImageField(upload_to='parts/', blank=True)
     
     # FIELDS WITH CHOICES.
     part_types = (
@@ -44,7 +44,8 @@ class BeybladePart(models.Model):
 
     spin_direction_choices = (
         ("LEFT", "Left"),
-        ("RIGHT", "Right")
+        ("RIGHT", "Right"),
+        ("DUAL", "Dual"),
     )
     spin_direction = models.CharField(
         max_length=5,

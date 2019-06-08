@@ -23,6 +23,8 @@ from beyblade_burst_web_app.views import index
 urlpatterns = [
     path('', index, name="index"),
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),  # Adding this path manually so that users can register using the same path.
+    path('accounts/', include('django.contrib.auth.urls')),  # Using this to handle sign ins using default User model...
     path('api/', include('beyblade_burst_web_app.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'media/(?P<path>.*)$', serve, {
