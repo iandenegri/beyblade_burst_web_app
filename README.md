@@ -27,3 +27,5 @@ What I want(ed) the site to look like:
 * The Combination Model can't handle Gachinko layer combinations. This can be addressed once all other aspects of it are completed.
 * Add cripsyforms or something so the sign up and sign in pages aren't so ugly.
 * Make password resetting work.
+* Switch to S3 for media file handling so I can start adding images to the parts.
+* Further customization to the User model.

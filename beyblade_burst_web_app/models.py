@@ -67,9 +67,14 @@ class Combination(models.Model):
     disk = models.ForeignKey(BeybladePart, on_delete=models.CASCADE, related_name="disks", related_query_name="disk")
     tip = models.ForeignKey(BeybladePart, on_delete=models.CASCADE, related_name="tips", related_query_name="tip")
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name_plural = 'Combinations'
         verbose_name = 'Combination'
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = ("{0} {1} {2}".format(self.layer.abbreviation, self.disk.abbreviation, self.tip.abbreviation))
+        super(Combination, self).save(*args, **kwargs)
+    

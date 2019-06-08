@@ -1,9 +1,11 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, CreateView
+from django.urls import reverse
 
 from beyblade_burst_web_app.models import BeybladePart, Combination
 from beyblade_burst_web_app.serializers import (BeybladePartSerializer, CombinationSerializer)
+from beyblade_burst_web_app.forms import BeybladePartCreateForm, CombinationCreateForm
 
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
@@ -47,6 +49,22 @@ class BeybladePartListView(ListView):
 class BeybladePartDetailView(DetailView):
     model = BeybladePart
     template_name="beyblade_burst_web_app/html/part_detail.html"
+
+class BeybladePartCreateView(CreateView):
+    model = BeybladePart
+    form_class = BeybladePartCreateForm
+    template_name = "beyblade_burst_web_app/html/part_create.html"
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('beyblade_part_detail', kwargs={'pk':self.object.id})
+
+class CombinationCreateView(CreateView):
+    model = Combination
+    form_class = CombinationCreateForm
+    template_name = "beyblade_burst_web_app/html/combo_create.html"
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('index')
 
 # API VIEWS
 

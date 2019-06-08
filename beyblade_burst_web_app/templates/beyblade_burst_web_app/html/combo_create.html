@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+    <h1 class="text-center">{{ object.name }}</h1>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %} 
