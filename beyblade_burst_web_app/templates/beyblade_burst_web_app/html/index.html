@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ part.name }}</h5>
                         <p class="card-text">{{ part.weight }}</p>
-                        <a href="#" class="btn btn-outline-primary">See more</a>
+                        <a href="{% url 'beyblade_part_detail' part.id %}" class="btn btn-outline-primary">See more</a>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ last_combo.layer.name }}</h5>
                     <p class="card-text">{{ last_combo.layer.weight }}</p>
-                    <a href="#" class="btn btn-outline-primary">See more</a>
+                    <a href="{% url 'beyblade_part_detail' last_combo.layer.id %}" class="btn btn-outline-primary">See more</a>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ last_combo.disk.name }}</h5>
                     <p class="card-text">{{ last_combo.disk.weight }}</p>
-                    <a href="#" class="btn btn-outline-primary">See more</a>
+                    <a href="{% url 'beyblade_part_detail' last_combo.disk.id %}" class="btn btn-outline-primary">See more</a>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ last_combo.tip.name }}</h5>
                     <p class="card-text">{{ last_combo.tip.weight }}</p>
-                    <a href="#" class="btn btn-outline-primary">See more</a>
+                    <a href="{% url 'beyblade_part_detail' last_combo.tip.id %}" class="btn btn-outline-primary">See more</a>
                 </div>
             </div>
         </div>

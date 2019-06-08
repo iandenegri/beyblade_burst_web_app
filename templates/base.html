@@ -14,7 +14,7 @@
 {% comment %} NAVBAR {% endcomment %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Beyblade Directory</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Beyblade Directory</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
             {% comment %} LEFT {% endcomment %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Part List <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'beyblade_part_list' %}">Part List <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             {% comment %} CENTER {% endcomment %}

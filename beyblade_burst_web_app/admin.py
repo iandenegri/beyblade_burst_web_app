@@ -6,7 +6,7 @@ from beyblade_burst_web_app.models import BeybladePart, Combination
 
 @admin.register(BeybladePart)
 class BeybladePartAdmin(admin.ModelAdmin):
-    list_display = ['name', 'product_code', 'abbreviation', ]
+    list_display = ['name', 'part_type', 'product_code', 'abbreviation', ]
     ordering = ['product_code', 'name']
 
 @admin.register(Combination)
