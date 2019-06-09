@@ -21,9 +21,11 @@ What I want(ed) the site to look like:
 * Switched from a FBV to a CBV for the index page to try and get as much of the site functioning with CBV's as possible.
 * Upgrades to the navbar.
 * Switched aliases to a text field as there can be an unlimited amount of them.
+* Users can create and submit parts and combinations. This will eventually need to be reduced to mods only or require validation.
+* django-storages added to requirements so I can set it up and start uploading images to develop with.
 
 # TO-DO
-* The Combination Model needs an overhaul from the admin panel side. When creating a new combination parts of all types come up for every specific part field. When creating a form to create combinations I can probably specify to only show specific types of parts in each drop down input.
+* The Combination Model needs an overhaul from the admin panel side. When creating a new combination parts of all types come up for every specific part field. Works fine on the UI side. Not a high priority but would be nice to address.
 * The Combination Model can't handle Gachinko layer combinations. This can be addressed once all other aspects of it are completed.
 * Add cripsyforms or something so the sign up and sign in pages aren't so ugly.
 * Make password resetting work.
