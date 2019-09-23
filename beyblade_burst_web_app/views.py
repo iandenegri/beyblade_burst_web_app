@@ -32,7 +32,7 @@ class Index(TemplateView):
 
 class BeybladePartListView(ListView):
     model = BeybladePart
-    queryset = BeybladePart.objects.all().order_by('initial_release')
+    queryset = BeybladePart.objects.all().order_by('product_code')
     template_name="beyblade_burst_web_app/html/part_list.html"
 
     def get_context_data(self, **kwargs):

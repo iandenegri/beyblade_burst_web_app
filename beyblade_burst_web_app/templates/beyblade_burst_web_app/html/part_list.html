@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container">
-    <h1 class="text-center">Latest 3 parts added to the site!</h1>
+    <h1 class="text-center">List of all Beyblade Burst parts</h1>
     <div class="row">
         {% for part in object_list %}
-        <div class="col-4">
-            <a href="{% url 'beyblade_part_detail' part.id %}">{{ part.name }}</a>
+        <div class="col-3">
+            <p><a href="{% url 'beyblade_part_detail' part.id %}">{{ part.name }}</a></p>
+        </div>
+        <div class="col-3">
+            <p>{{ part.part_type }}</p>
+        </div>
+        <div class="col-3">
+            <p>{{ part.system }}</p>
+        </div>
+        <div class="col-3">
+            <p>B-{{ part.product_code|stringformat:"02d" }}</p>
         </div>
         {% endfor %}
     </div>

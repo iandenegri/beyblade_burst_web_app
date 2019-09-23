@@ -8,6 +8,7 @@ from beyblade_burst_web_app.models import BeybladePart, Combination
 class BeybladePartAdmin(admin.ModelAdmin):
     list_display = ['name', 'part_type', 'product_code', 'abbreviation', ]
     ordering = ['product_code', 'name']
+    list_filter = ['part_type']
 
 @admin.register(Combination)
 class CombinationAdmin(admin.ModelAdmin):

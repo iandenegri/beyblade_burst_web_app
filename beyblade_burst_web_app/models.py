@@ -8,7 +8,7 @@ class BeybladePart(models.Model):
     name = models.CharField(max_length=30, unique=True)
     japanese_name = models.CharField(max_length=50, blank=True)
     aliases = models.TextField(max_length=50, blank=True)
-    product_code = models.CharField(max_length=8, blank=True)
+    product_code = models.IntegerField(blank=True)
     initial_release = models.DateField(blank=True)
     weight = models.DecimalField(max_digits=10, decimal_places=3, blank=True)
     part_image = models.ImageField(upload_to='parts/', blank=True)
